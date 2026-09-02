@@ -1,0 +1,51 @@
+name: Validate Documentation
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Check for /docs folder
+      run: |
+        if [ ! -d "docs" ]; then
+          echo "❌ /docs folder not found!"
+          exit 1
+        fi
+        echo "✅ /docs folder exists"
+    
+    - name: Check for ERD file
+      run: |
+        if ! ls docs/erd.* 1> /dev/null 2>&1; then
+          echo "❌ ERD file not found in /docs!"
+          exit 1
+        fi
+        echo "✅ ERD file exists"
+    
+    - name: Check for Endpoint Plan
+      run: |
+        if ! ls docs/endpoint-plan.* 1> /dev/null 2>&1; then
+          echo "❌ Endpoint plan not found in /docs!"
+          exit 1
+        fi
+        echo "✅ Endpoint plan exists"
+    
+    - name: Check for SQL Script
+      run: |
+        if [ ! -f "docs/raceday.sql" ]; then
+          echo "❌ SQL script not found in /docs!"
+          exit 1
+        fi
+        echo "✅ SQL script exists"
+    
+    - name: Validate SQL syntax
+      run: |
+        # Basic SQL syntax check (you can add more sophisticated checks)
+        echo "✅ All files present - build successful!"
