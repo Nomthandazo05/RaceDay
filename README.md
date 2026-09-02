@@ -1,6 +1,6 @@
 # 🏃 RaceDay - Event Management System
 
-[![Build Status](https://github.com/YOUR-USERNAME/RaceDay/actions/workflows/validate-docs.yml/badge.svg)](https://github.com/YOUR-USERNAME/RaceDay/actions/workflows/validate-docs.yml)
+[![Build Status] https://github.com/Nomthandazo05/RaceDay
 
 ## 📖 Overview
 
@@ -116,5 +116,5 @@ Before you begin, ensure you have the following installed:
 
 #### 1. Clone the Repository
 ```bash
-git clone https://github.com/YOUR-USERNAME/RaceDay.git
+git clone https:https://github.com/Nomthandazo05/RaceDay
 cd RaceDay
