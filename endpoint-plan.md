@@ -4,6 +4,7 @@
 This document outlines all RESTful API endpoints for the RaceDay Event Management System. Each endpoint includes the HTTP method, route, description, required role, request body, and expected response.
 
 ## 🔗 Base URL
+/api
 
 ## 🔐 Authentication
 All endpoints except registration and login require a valid JWT token in the Authorization header:
