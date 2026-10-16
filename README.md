@@ -1,7 +1,6 @@
 # 🏃 RaceDay - Event Management System (Part 2: RESTful API)
 
-![.NET CI/CD](https://github.com/YOUR-USERNAME/RaceDay/actions/workflows/dotnet.yml/badge.svg)
-
+![.NET CI/CD] https://github.com/Nomthandazo05/RaceDay
 
 ## 📖 Overview
 
