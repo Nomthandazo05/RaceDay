@@ -1,120 +1,149 @@
-# 🏃 RaceDay - Event Management System
+# 🏃 RaceDay - Event Management System (Part 2: RESTful API)
 
-[![Build Status] https://github.com/Nomthandazo05/RaceDay
+![.NET CI/CD](https://github.com/YOUR-USERNAME/RaceDay/actions/workflows/dotnet.yml/badge.svg)
+
 
 ## 📖 Overview
 
-RaceDay is a comprehensive full-stack web-based event management system designed specifically for the South African road running, walking, and cycling community. The platform connects Event Organisers with Participants, streamlining the entire event lifecycle from creation to results tracking.
+RaceDay is a comprehensive full-stack web-based event management system designed specifically for the South African road running, walking, and cycling community. The platform connects **Event Organisers** with **Participants**, streamlining the entire event lifecycle from creation to results tracking.
 
-South Africa has a rich road events culture, from the iconic Comrades Marathon between Pietermaritzburg and Durban, to the Cape Town Cycle Tour, the Soweto Marathon, the Two Oceans, and hundreds of community walks, park runs, and charity cycling events held in towns and cities across the country every weekend.
+**Part 2** focuses on building the **RESTful API** that powers the entire RaceDay system. This API handles all data operations, enforces role-based access, and is fully tested before the MVC front-end is built in Part 3.
 
-Despite the enormous participation these events attract, many are still managed through paper-based registration, spreadsheets, and disconnected communication channels, leaving organisers overwhelmed and participants underserved.
+---
 
-**RaceDay solves this problem** by providing a unified digital platform for:
-- Event creation and management
-- Participant registration and enrolment
-- Results tracking and performance history
-- Role-based access control
-- Race day preparation tools
+## 🎯 What This Part Delivers
+
+- ✅ **ASP.NET Core Web API** built with C#
+- ✅ **SQL Server database** via Entity Framework Core (Code-First)
+- ✅ **Role-based authentication** (Organiser vs Participant)
+- ✅ **JWT session management** for secure API access
+- ✅ **Swagger UI** for live endpoint testing
+- ✅ **Unit tests** covering authentication, CRUD, and role enforcement
+- ✅ **GitHub Actions CI/CD** pipeline that builds and tests on every push
 
 ---
 
 ## 👥 User Roles
 
 ### 🎯 Event Organiser
-Event Organisers are the backbone of the racing community. They have the ability to:
-- ✅ Create and manage events
-- ✅ Add categories to events (e.g., 5km, 10km, Half Marathon)
-- ✅ Set entry fees and participant limits
-- ✅ Manage participant enrolments
-- ✅ Record and publish results
-- ✅ Update event status (Upcoming/Ongoing/Completed)
-- ✅ Access comprehensive event administration tools
+- Register and login as an Organiser
+- Create, update, and delete events
+- Define categories (age/distance) for each event
+- View all enrolments for their events
+- Capture finish times and finishing positions
+- View own profile and update details
 
 ### 🏃 Participant
-Participants are the heart of every event. They can:
-- ✅ Browse upcoming events
-- ✅ View event details and categories
-- ✅ Enrol in events
-- ✅ Track personal performance history
-- ✅ View their past results
-- ✅ Prepare for race day with event information
-- ✅ Update personal profile information
+- Register and login as a Participant
+- Browse upcoming events (public)
+- Enrol in events by selecting a category
+- View personal enrolment history
+- View personal race results
+- View own profile and update details
 
----
-
-## 🎯 Key Features
-
-| Feature | Description |
-|---------|-------------|
-| **Event Management** | Full CRUD operations for events with detailed information |
-| **Category Management** | Support for multiple categories per event with different distances and fees |
-| **Participant Enrolment** | Easy registration process with unique race numbers |
-| **Results Tracking** | Record and view race results with finish times and positions |
-| **Authentication** | Secure JWT-based authentication for both roles |
-| **Role-Based Access** | Different permissions for Organisers and Participants |
-| **Performance History** | Participants can track their race history |
-| **Scalable Design** | Built to handle hundreds of events and thousands of participants |
+### 🔓 Public (No Authentication)
+- Browse all events
+- View event details and categories
+- View event results and leaderboards
 
 ---
 
 ## 🛠️ Technology Stack
 
-### Part 1 - Planning & Database
-- **Database**: Microsoft SQL Server
-- **Diagram Tool**: draw.io (ERD)
-- **Version Control**: Git & GitHub
-- **CI/CD**: GitHub Actions
-
-### Part 2 - API Development (Coming Soon)
-- **Backend Framework**: .NET/C# Web API
-- **Authentication**: JWT (JSON Web Tokens)
-- **Database Access**: Entity Framework Core
-- **API Style**: RESTful
-
-### Part 3 - Frontend & Deployment (Coming Soon)
-- **Frontend Framework**: React or Angular
-- **Containerization**: Docker
-- **Cloud Platform**: Azure/AWS
-- **CI/CD**: GitHub Actions with deployment pipelines
+| Layer | Technology |
+|-------|------------|
+| **Framework** | ASP.NET Core 8.0 Web API |
+| **Language** | C# 12 |
+| **ORM** | Entity Framework Core 8 (Code-First) |
+| **Database** | SQL Server (LocalDB or Express) |
+| **Authentication** | JWT (JSON Web Tokens) |
+| **Password Hashing** | BCrypt.Net |
+| **API Documentation** | Swagger / Swashbuckle |
+| **Testing** | xUnit, Moq, FluentAssertions, EF Core InMemory |
+| **CI/CD** | GitHub Actions |
+| **IDE** | Visual Studio 2022 |
 
 ---
 
-## 📚 Documentation
-
-All planning documents are stored in the `/docs` folder:
-
-| Document | Description |
-|----------|-------------|
-| [ERD Diagram](/docs/erd.png) | Entity Relationship Diagram showing all database tables and relationships |
-| [API Endpoint Plan](/docs/endpoint-plan.md) | Complete list of all API endpoints with methods, roles, and responses |
-| [Database Script](/docs/raceday.sql) | SQL script to create the database with schema and sample data |
-
-### Database Schema Overview
-
-The database consists of **7 entities**:
-
-1. **Users** - Base table for all users (Email, Password, Role)
-2. **Organisers** - Extends Users with organisation details
-3. **Participants** - Extends Users with participant-specific info
-4. **Events** - Event details (Name, Date, Location, Status)
-5. **Categories** - Event categories (Distance, Fee, Start Time)
-6. **Enrolments** - Links Participants to Categories (Registration, Race Number)
-7. **Results** - Race results (Finish Time, Position, Status)
+## 📁 Project Structure
+RaceDay/
+├── .github/
+│ └── workflows/
+│ └── dotnet.yml # CI/CD pipeline
+├── docs/
+│ ├── erd.png # Part 1 ERD
+│ ├── endpoint-plan.md # Part 1 Endpoint Plan
+│ ├── raceday.sql # Part 1 SQL Script
+│ └── screenshots/
+│ └── green-build.png # CI/CD green build screenshot
+├── RaceDay.API/
+│ ├── Controllers/
+│ │ ├── AuthController.cs # Register & Login
+│ │ ├── UsersController.cs # Profile endpoints
+│ │ ├── EventsController.cs # Event CRUD
+│ │ ├── CategoriesController.cs # Category CRUD
+│ │ ├── EnrolmentsController.cs # Enrolment operations
+│ │ └── ResultsController.cs # Result operations
+│ ├── Models/
+│ │ ├── User.cs
+│ │ ├── Organiser.cs
+│ │ ├── Participant.cs
+│ │ ├── Event.cs
+│ │ ├── Category.cs
+│ │ ├── Enrolment.cs
+│ │ └── Result.cs
+│ ├── DTOs/
+│ │ ├── AuthDTOs.cs
+│ │ ├── UserDTOs.cs
+│ │ ├── EventDTOs.cs
+│ │ ├── CategoryDTOs.cs
+│ │ ├── EnrolmentDTOs.cs
+│ │ └── ResultDTOs.cs
+│ ├── Data/
+│ │ └── RaceDayDbContext.cs
+│ ├── appsettings.json
+│ ├── appsettings.Development.json
+│ └── Program.cs
+├── README.md
+└── .gitignore
 
 ---
 
 ## 🚀 Getting Started
 
 ### Prerequisites
-Before you begin, ensure you have the following installed:
-- [SQL Server Management Studio (SSMS)](https://docs.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms)
-- [Git](https://git-scm.com/downloads)
-- Any text editor (VS Code recommended)
 
-### Step-by-Step Setup
+Ensure you have the following installed:
+
+| Tool | Version | Download Link |
+|------|---------|---------------|
+| Visual Studio 2022 | 17.8+ | [Download](https://visualstudio.microsoft.com/) |
+| .NET SDK | 8.0 | [Download](https://dotnet.microsoft.com/download) |
+| SQL Server | 2019+ | [Download](https://www.microsoft.com/en-us/sql-server/sql-server-downloads) |
+| SQL Server Management Studio | 19+ | [Download](https://docs.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms) |
+| Git | Latest | [Download](https://git-scm.com/) |
+
+### Installation & Setup
 
 #### 1. Clone the Repository
+
 ```bash
-git clone https:https://github.com/Nomthandazo05/RaceDay
+git clone https://github.com/YOUR-USERNAME/RaceDay.git
 cd RaceDay
+
+📖 Swagger UI
+Swagger is configured with JWT support. To test protected endpoints:
+Run the API and navigate to https://localhost:7000/swagger
+Call POST /api/auth/login to get a JWT token
+Click the 🔓 Authorize button at the top
+Enter Bearer <your_token> and click Authorize
+All protected endpoints are now accessible from Swagger
+
+📝 Learning Outcomes Achieved
+By completing Part 2, I have demonstrated the ability to:
+✅ Build a RESTful API using ASP.NET Core Web API in C#
+✅ Connect the API to a SQL Server database using Entity Framework Core
+✅ Implement role-based session authentication for Organiser and Participant roles
+✅ Write and run unit tests for API endpoints
+✅ Configure automated CI/CD using GitHub Actions
+✅ Follow the Part 1 specification (ERD, endpoint plan, SQL script)
